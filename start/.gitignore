@@ -2,3 +2,20 @@
 
 *.DS_Store
 Thumbs.db
+
+# build Artifacts
+
+build/
+target/
+bin/
+gen/
+
+# Local Configuration File
+
+local.properties
+
+# Eclipse project files
+
+.classpath
+.project
+.settings/
