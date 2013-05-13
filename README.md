@@ -12,7 +12,7 @@ Using [git], clone the repository with the following command:
 $ git clone https://github.com/springframework-meta/gs-maven-android.git
 ```
 
-> Note: if you are unfamiliar with [git], then you may want to try the [GitHub for Mac] or [GitHub for Windows] clients.
+> **Note**: if you are unfamiliar with [git], then you may want to try the [GitHub for Mac] or [GitHub for Windows] clients.
 
 
 ## Installing the Android Development Environment
@@ -60,7 +60,7 @@ The Android SDK download does not include any specific Android platform SDKs. In
 	$ android
 	```
 
-	> Note: if this command does not open the Android SDK Manager, then your path is not configured correctly.
+	> **Note**: if this command does not open the Android SDK Manager, then your path is not configured correctly.
 	
 2. Select the checkbox for *Tools*
 
@@ -70,7 +70,7 @@ The Android SDK download does not include any specific Android platform SDKs. In
 
 5. Click the **Install packages...** button to complete the download and installation.
 
-	> Note: you may want to simply install all the available updates, but be aware it will take longer, as each SDK level is a sizable download.
+	> **Note**: you may want to simply install all the available updates, but be aware it will take longer, as each SDK level is a sizable download.
 
 
 
@@ -181,10 +181,21 @@ Create an AndroidManifest.xml file at the root of the project and add the follow
     android:versionCode="1"
     android:versionName="1.0.0" >
 
+    <application android:label="@string/app_name" >
+        <activity
+            android:name=".HelloActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
 </manifest>
 ```
 
-This represents the simplest possible manifest, which is useful for illustrating the Maven integration, however it contains no declarations for any Android components typically found within applications.
+This represents a very simple Android app, which only contains a single activity
 
 
 ## Building Android Code
@@ -216,18 +227,68 @@ $ mvn android:help
 ```
 
 
+## Declaring Dependencies
+
+Our simple Hello World sample is completely self-contained and does not depend on any additional libraries. Most application, however, depend on external libraries to handle common and/or complex functionality.
+
+For example, suppose we want our application to print the current date and time. While we could use the date and time facilities in the native Java libraries, we can make things more interesting by using the Joda Time libraries.
+
+To do this, modify HelloActivity.java to look like this:
+
+```java
+package org.hello;
+
+import org.joda.time.LocalTime;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.widget.TextView;
+
+public class HelloActivity extends Activity {
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+
+        TextView textView = (TextView) findViewById(R.id.text_view);
+
+        LocalTime currentTime = new LocalTime();
+        textView.setText("The current local time is: " + currentTime);
+    }
+
+}
+```
+
+In this example, we are using Joda Time's `LocalTime` class to retrieve and display the current time. 
+
+If we were to run `mvn package` to build our project now, the build would fail because we have not declared Joda Time as a compile dependency in our build. We can fix that by adding the following lines to `<dependencies>` section of the *pom.xml*:
+
+```xml
+<dependency>
+    <groupId>joda-time</groupId>
+    <artifactId>joda-time</artifactId>
+    <version>2.2</version>
+</dependency>
+```
+
+Similar to the Android dependency we discussed earlier, this block of XML declares a new dependency for our project, specifically the Joda Time library.
+
+Now if you run `mvn compile` or `mvn package`, Maven should resolve the Joda Time dependency from the Maven Central repository and the build will be successful.
+
+
 ## Conclusions
 
-Congratulations! You have now created a very simple, yet effective Maven project definition for building Android projects. Even though the Android app we built has no functionality, we have demonstrated the capabilities of the [Android Maven Plugin] when developing Android applications.
+Congratulations! You have now created a very simple, yet effective Maven project definition for building Android projects. Even though the Android app we built has very little functionality, we have demonstrated the capabilities of the [Android Maven Plugin] when developing Android applications, and illustrated how to include third party dependencies for use in the app.
 
 
 ## Next Steps
 
-There's much more to building projects with Maven. For continued exploration of Maven, you may want to have a look at the following Getting Started guides:
+There's much more to building projects with Maven. For continued exploration of Maven, you may want to review the following Getting Started guides:
 
 * Setting Maven properties
 
-And for an alternate approach to building projects, your may want to look at [Building Android Projects with Gradle].
+And for an alternate approach to building Android projects, you may want to view [Building Android Projects with Gradle].
 
 
 [`complete`]:complete/
