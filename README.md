@@ -4,7 +4,7 @@ This Getting Started guide will walk you through a few basic steps of setting up
 
 ## Downloads
 
-Within this repository are two directories, [`complete`] and [`start`]. [`complete`] contains the full working copy of the code being demonstrated in this guide. [`start`] contains the initial project setup, but otherwise empty code files. You may use the [`start`] folder as a way to quickly begin working through the implementation steps.
+Within this repository are two directories, [`complete`] and [`initial`]. [`complete`] contains the full working copy of the code being demonstrated in this guide. [`initial`] contains the initial project setup, but otherwise empty code files. You may use the [`initial`] folder as a way to quickly begin working through the implementation steps.
 
 Using [git], clone the repository with the following command:
 
@@ -112,7 +112,7 @@ To get started, create a file named _pom.xml_ at the root of the project and giv
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.springframework.gs</groupId>
-	<artifactId>gs-maven-android-start</artifactId>
+	<artifactId>gs-maven-android-initial</artifactId>
 	<version>1.0.0</version>
 	<packaging>apk</packaging>
 	
@@ -216,7 +216,7 @@ Since it's unlikely that you'll want to distribute or work with _.class_ files d
 $ mvn package
 ```
 
-The *package* goal will compile your Java code, run any tests, and finish by packaging the code up in a JAR file within the *target* directory. The name of the JAR file will be based on the project's `<artifactId>` and `<version>`. For example, given the minimal *pom.xml* file from before, the JAR file will be named *gs-maven-android-start-1.0.0.jar*.
+The *package* goal will compile your Java code, run any tests, and finish by packaging the code up in a JAR file within the *target* directory. The name of the JAR file will be based on the project's `<artifactId>` and `<version>`. For example, given the minimal *pom.xml* file from before, the JAR file will be named *gs-maven-android-initial-1.0.0.jar*.
 
 Because we changed the value of `<packaging>` from "jar" to "apk", the result will be an APK file within the *target* directory in addition to the JAR file. This APK file is now a packaged Android application ready to be deployed to a device or emulator.
 
@@ -292,7 +292,7 @@ And for an alternate approach to building Android projects, you may want to view
 
 
 [`complete`]:complete/
-[`start`]:start/
+[`initial`]:initial/
 [git]:http://git-scm.com
 [GitHub for Mac]:http://mac.github.com
 [GitHub for Windows]:http://windows.github.com
