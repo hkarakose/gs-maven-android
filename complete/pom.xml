@@ -2,11 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.springframework.gs</groupId>
+	<groupId>org.hello</groupId>
 	<artifactId>gs-maven-android-complete</artifactId>
 	<version>1.0.0</version>
 	<packaging>apk</packaging>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>com.google.android</groupId>
@@ -20,8 +20,9 @@
 			<version>2.2</version>
 		</dependency>
 	</dependencies>
-	
+
 	<build>
+		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
@@ -31,9 +32,20 @@
 					<sdk>
 						<platform>17</platform>
 					</sdk>
+					<deleteConflictingFiles>true</deleteConflictingFiles>
+					<undeployBeforeDeploy>true</undeployBeforeDeploy>
 				</configuration>
 				<extensions>true</extensions>
 			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
+
 </project>
