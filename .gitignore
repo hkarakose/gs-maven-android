@@ -2,3 +2,33 @@
 
 *.DS_Store
 Thumbs.db
+*.sw?
+.#*
+*#
+*~
+*.sublime-*
+
+# build Artifacts
+
+.gradle/
+build/
+target/
+bin/
+gen/
+
+# Local Configuration File
+
+local.properties
+
+# Eclipse project files
+
+.classpath
+.project
+.settings/
+
+# IntelliJ IDEA Files
+
+*.iml
+*.ipr
+*.iws
+*.idea
