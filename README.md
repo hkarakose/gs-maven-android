@@ -27,10 +27,10 @@ Building Android applications requires the installation of the [Android SDK].
 
 3. To use the [Android Maven Plugin] we need to configure the `ANDROID_HOME` environment variable based on the location where you installed the Android SDK. Additionally, you should consider adding `ANDROID_HOME/tools` and `ANDROID_HOME/platform-tools` to your PATH.
 
-	Mac OS X:
+    Mac OS X:
 
-	```sh
-	$ export ANDROID_HOME=/<installation location>/android-sdk-macosx
+    ```sh
+    $ export ANDROID_HOME=/<installation location>/android-sdk-macosx
     $ export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
     ```
     
@@ -40,7 +40,7 @@ Building Android applications requires the installation of the [Android SDK].
     $ export ANDROID_HOME=/<installation location>/android-sdk-linux
     $ export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
     ```
-	    
+        
     Windows:
     
     ```sh
@@ -56,12 +56,12 @@ The Android SDK download does not include any specific Android platform SDKs. In
 
 1. Open the Android SDK Manager window:
 
-	```sh
-	$ android
-	```
+    ```sh
+    $ android
+    ```
 
-	> **Note**: if this command does not open the Android SDK Manager, then your path is not configured correctly.
-	
+    > **Note**: if this command does not open the Android SDK Manager, then your path is not configured correctly.
+    
 2. Select the checkbox for *Tools*
 
 3. Select the checkbox for the latest Android SDK, "Android 4.2.2 (API 17)" as of this writing
@@ -70,7 +70,7 @@ The Android SDK download does not include any specific Android platform SDKs. In
 
 5. Click the **Install packages...** button to complete the download and installation.
 
-	> **Note**: you may want to simply install all the available updates, but be aware it will take longer, as each SDK level is a sizable download.
+    > **Note**: you may want to simply install all the available updates, but be aware it will take longer, as each SDK level is a sizable download.
 
 
 

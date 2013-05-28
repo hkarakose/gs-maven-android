@@ -24,15 +24,15 @@ import android.widget.TextView;
 
 public class HelloActivity extends Activity {
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
 
-		TextView textView = (TextView) findViewById(R.id.text_view);
+        TextView textView = (TextView) findViewById(R.id.text_view);
 
-		LocalTime currentTime = new LocalTime();
-		textView.setText("The current local time is: " + currentTime);
-	}
+        LocalTime currentTime = new LocalTime();
+        textView.setText("The current local time is: " + currentTime);
+    }
 
 }
