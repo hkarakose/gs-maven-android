@@ -113,7 +113,7 @@ To get started, create a file named _pom.xml_ at the root of the project and giv
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.hello</groupId>
     <artifactId>gs-maven-android-initial</artifactId>
-    <version>1.0.0</version>
+    <version>0.1.0</version>
     <packaging>apk</packaging>
 
     <dependencies>
@@ -191,7 +191,7 @@ Create an AndroidManifest.xml file at the root of the project and add the follow
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.hello"
     android:versionCode="1"
-    android:versionName="1.0.0" >
+    android:versionName="0.1.0" >
 
     <application android:label="@string/app_name" >
         <activity
@@ -228,7 +228,7 @@ Since it's unlikely that you'll want to distribute or work with _.class_ files d
 $ mvn package
 ```
 
-The *package* goal will compile your Java code, run any tests, and finish by packaging the code up in a JAR file within the *target* directory. The name of the JAR file will be based on the project's `<artifactId>` and `<version>`. For example, given the minimal *pom.xml* file from before, the JAR file will be named *gs-maven-android-initial-1.0.0.jar*.
+The *package* goal will compile your Java code, run any tests, and finish by packaging the code up in a JAR file within the *target* directory. The name of the JAR file will be based on the project's `<artifactId>` and `<version>`. For example, given the minimal *pom.xml* file from before, the JAR file will be named *gs-maven-android-initial-0.1.0.jar*.
 
 Because we changed the value of `<packaging>` from "jar" to "apk", the result will be an APK file within the *target* directory in addition to the JAR file. This APK file is now a packaged Android application ready to be deployed to a device or emulator.
 
