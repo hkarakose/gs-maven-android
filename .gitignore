@@ -8,7 +8,7 @@ Thumbs.db
 *~
 *.sublime-*
 
-# build Artifacts
+# Build Artifacts
 
 .gradle/
 build/
@@ -20,7 +20,7 @@ gen/
 
 local.properties
 
-# Eclipse project files
+# Eclipse Project Files
 
 .classpath
 .project
