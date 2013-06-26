@@ -23,7 +23,7 @@ What you'll need
 Set up the project
 ------------------
 
-First you'll need to setup an Android project for Maven to build. To keep the focus on Maven, make the project as simple as possible for now.
+First, you will need to set up an Android project for Maven to build. To keep the focus on Maven, make the project as simple as possible for now.
 
 {!include#create-directory-structure-org-hello}
 
@@ -43,7 +43,31 @@ First you'll need to setup an Android project for Maven to build. To keep the fo
 
 Within the `src/main/java/org/hello` directory, you can create any Java classes you want. To maintain consistency with the rest of this guide, create the following class:
 
-    {!include:complete/src/main/java/org/hello/HelloActivity.java}
+```java
+package org.hello;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.widget.TextView;
+
+public class HelloActivity extends Activity {
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.hello_layout);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        TextView textView = (TextView) findViewById(R.id.text_view);
+        textView.setText("Hello world!");
+    }
+
+}
+
+```
 
 ### Install Maven
 

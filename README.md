@@ -96,7 +96,7 @@ The [Android SDK][sdk] download does not include specific Android platforms. To 
 Set up the project
 ------------------
 
-First you'll need to setup an Android project for Maven to build. To keep the focus on Maven, make the project as simple as possible for now.
+First, you will need to set up an Android project for Maven to build. To keep the focus on Maven, make the project as simple as possible for now.
 
 ### Create the directory structure
 
@@ -172,11 +172,8 @@ The [Android Manifest] contains all the information required to run an Android a
 
 Within the `src/main/java/org/hello` directory, you can create any Java classes you want. To maintain consistency with the rest of this guide, create the following class:
 
-`src/main/java/org/hello/HelloActivity.java`
 ```java
 package org.hello;
-
-import org.joda.time.LocalTime;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -187,15 +184,18 @@ public class HelloActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.hello_layout);
+    }
 
+    @Override
+    public void onStart() {
+        super.onStart();
         TextView textView = (TextView) findViewById(R.id.text_view);
-
-        LocalTime currentTime = new LocalTime();
-        textView.setText("The current local time is: " + currentTime);
+        textView.setText("Hello world!");
     }
 
 }
+
 ```
 
 ### Install Maven
@@ -358,11 +358,14 @@ public class HelloActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.hello_layout);
+    }
 
-        TextView textView = (TextView) findViewById(R.id.text_view);
-
+    @Override
+    public void onStart() {
+        super.onStart();
         LocalTime currentTime = new LocalTime();
+        TextView textView = (TextView) findViewById(R.id.text_view);
         textView.setText("The current local time is: " + currentTime);
     }
 
