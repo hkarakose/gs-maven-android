@@ -1,6 +1,6 @@
 ### Related Resources
 
-Building Android applications with Maven is just one facet of the Android development story. You may want to continue your exploration of Android application development and mobile application development with the following
+Building Android applications with Maven is just one facet of the Android development story. You may want to continue your exploration of Android and mobile application development with the following resources.
 
 ### Getting Started Guides
 
@@ -24,7 +24,7 @@ Building Android applications with Maven is just one facet of the Android develo
 
 [tut-tbd]: /guides/tutorials/tbd
 
-### Understanding
+### Understanding Concepts and Technologies
 
 * [REST][u-rest]
 * [JSON][u-json]
