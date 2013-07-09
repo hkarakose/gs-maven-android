@@ -1,3 +1,4 @@
+<#assign project_id="gs-maven-android">
 
 # Getting Started: Building Android Projects with Maven
 
@@ -16,22 +17,7 @@ What you'll need
 
 [sdk]: http://developer.android.com/sdk/index.html
 
-How to complete this guide
---------------------------
-
-Like all Spring's [Getting Started guides](/getting-started), you can start from scratch and complete each step, or you can bypass basic setup steps that are already familiar to you. Either way, you end up with working code.
-
-To **start from scratch**, move on to [Set up the project](#scratch).
-
-To **skip the basics**, do the following:
-
- - [Download][zip] and unzip the source repository for this guide, or clone it using [git](/understanding/git):
-`git clone https://github.com/springframework-meta/gs-maven-android.git`
- - cd into `gs-maven-android/initial`
- - Jump ahead to [Create Java classes](#initial).
-
-**When you're finished**, you can check your results against the code in `gs-maven-android/complete`.
-[zip]: https://github.com/springframework-meta/gs-maven-android/archive/master.zip
+## <@how_to_complete_this_guide jump_ahead='Create Java classes'/>
 
 <a name="scratch"></a>
 Set up the project
@@ -39,75 +25,19 @@ Set up the project
 
 First, you will need to set up an Android project for Maven to build.  To keep the focus on Maven, make the project as simple as possible for now. If this is your first time working with Android projects, refer to [Getting Started with Android](../gs-android/README.md) to help configure your development environment.
 
-### Create the directory structure
+<@create_directory_structure_org_hello/>
 
-In a project directory of your choosing, create the following subdirectory structure; for example, with the following command on Mac or Linux:
+<@create_android_manifest/>
 
-```sh
-$ mkdir -p src/main/java/org/hello
-```
-
-    └── src
-        └── main
-            └── java
-                └── org
-                    └── hello
-
-### Create an Android manifest
-
-The [Android Manifest] contains all the information required to run an Android application, and it cannot build without one.
-
-[Android Manifest]: http://developer.android.com/guide/topics/manifest/manifest-intro.html
-
-`AndroidManifest.xml`
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.hello"
-    android:versionCode="1"
-    android:versionName="1.0.0" >
-
-    <application android:label="@string/app_name" >
-        <activity
-            android:name=".HelloActivity"
-            android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-    </application>
-
-</manifest>
-```
+    <@snippet path="AndroidManifest.xml" prefix="complete"/>
 
 ### Create a String Resource
 
-`res/values/strings.xml`
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">Android Maven</string>
-</resources>
-```
+    <@snippet path="res/values/strings.xml" prefix="complete"/>
 
 ### Create a Layout
 
-`res/layout/hello_layout.xml`
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >
-<TextView  
-    android:id="@+id/text_view"
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    />
-</LinearLayout>
-```
+    <@snippet path="res/layout/hello_layout.xml" prefix="complete"/>
 
 <a name="initial"></a>
 ### Create Java classes
@@ -194,7 +124,7 @@ Create a file named _pom.xml_ at the root of the project and give it the followi
     </dependencies>
 
     <build>
-        <finalName>gs-maven-android</finalName>
+        <finalName>${project_id}</finalName>
         <plugins>
             <plugin>
                 <groupId>com.jayway.maven.plugins.android.generation2</groupId>
@@ -285,34 +215,7 @@ For example, suppose we want our application to print the current date and time.
 
 To do this, modify HelloActivity.java to look like this:
 
-`src/main/java/org/hello/HelloActivity.java`
-```java
-package org.hello;
-
-import org.joda.time.LocalTime;
-
-import android.app.Activity;
-import android.os.Bundle;
-import android.widget.TextView;
-
-public class HelloActivity extends Activity {
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.hello_layout);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        LocalTime currentTime = new LocalTime();
-        TextView textView = (TextView) findViewById(R.id.text_view);
-        textView.setText("The current local time is: " + currentTime);
-    }
-
-}
-```
+    <@snippet path="src/main/java/org/hello/HelloActivity.java" prefix="complete"/>
 
 In this example, we are using Joda Time's `LocalTime` class to retrieve and display the current time. 
 
@@ -332,59 +235,7 @@ Now if you run `mvn compile` or `mvn package`, Maven should resolve the Joda Tim
 
 Here's the completed pom.xml file:
 
-`pom.xml`
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>org.hello</groupId>
-    <artifactId>gs-maven-android</artifactId>
-    <version>0.1.0</version>
-    <packaging>apk</packaging>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.google.android</groupId>
-            <artifactId>android</artifactId>
-            <version>4.1.1.4</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
-            <version>2.2</version>
-        </dependency>
-    </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>com.jayway.maven.plugins.android.generation2</groupId>
-                <artifactId>android-maven-plugin</artifactId>
-                <version>3.6.0</version>
-                <configuration>
-                    <sdk>
-                        <platform>17</platform>
-                    </sdk>
-                    <deleteConflictingFiles>true</deleteConflictingFiles>
-                    <undeployBeforeDeploy>true</undeployBeforeDeploy>
-                </configuration>
-                <extensions>true</extensions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
-                <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
-</project>
-```
+    <@snippet path="pom.xml" prefix="complete"/>
 
 
 ## Next Steps
