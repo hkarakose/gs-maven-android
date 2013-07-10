@@ -6,6 +6,7 @@ What you'll build
 
 This guide walks you through using Maven to build a simple Android project.
 
+
 What you'll need
 ----------------
 
@@ -28,16 +29,17 @@ To **skip the basics**, do the following:
  - [Download][zip] and unzip the source repository for this guide, or clone it using [git](/understanding/git):
 `git clone https://github.com/springframework-meta/gs-maven-android.git`
  - cd into `gs-maven-android/initial`
- - Jump ahead to [Create Java classes](#initial).
+ - Jump ahead to [Install Maven](#initial).
 
 **When you're finished**, you can check your results against the code in `gs-maven-android/complete`.
 [zip]: https://github.com/springframework-meta/gs-maven-android/archive/master.zip
+
 
 <a name="scratch"></a>
 Set up the project
 ------------------
 
-First, you will need to set up an Android project for Maven to build.  To keep the focus on Maven, make the project as simple as possible for now. If this is your first time working with Android projects, refer to [Getting Started with Android](../gs-android/README.md) to help configure your development environment.
+First, you set up an Android project for Maven to build.  To keep the focus on Maven, make the project as simple as possible for now. If this is your first time working with Android projects, refer to [Installing the Android Development Environment](../gs-android/README.md) to help configure your development environment.
 
 ### Create the directory structure
 
@@ -81,7 +83,8 @@ The [Android Manifest] contains all the information required to run an Android a
 </manifest>
 ```
 
-### Create a String Resource
+### Create a string resource
+Add a text string. Text strings can be referenced from the application or from other resource files.
 
 `res/values/strings.xml`
 ```xml
@@ -91,7 +94,8 @@ The [Android Manifest] contains all the information required to run an Android a
 </resources>
 ```
 
-### Create a Layout
+### Create a layout
+Here you define the visual structure for the user interface of your application.
 
 `res/layout/hello_layout.xml`
 ```xml
@@ -109,11 +113,11 @@ The [Android Manifest] contains all the information required to run an Android a
 </LinearLayout>
 ```
 
-<a name="initial"></a>
 ### Create Java classes
 
 Within the `src/main/java/org/hello` directory, you can create any Java classes you want. To maintain consistency with the rest of this guide, create the following class:
 
+`src/main/java/org/hello/HelloActivity.java`
 ```java
 package org.hello;
 
@@ -137,24 +141,26 @@ public class HelloActivity extends Activity {
     }
 
 }
-
 ```
 
-### Install Maven
 
-Now that you have a project that is ready to be built with Maven, the next step is to install Maven.
+<a name="initial"></a>
+Install Maven
+-------------
 
-Maven is downloadable as a zip file at http://maven.apache.org/download.cgi. Only the binaries are required, so look for the link to apache-maven-_{version}_-bin.zip or apache-maven-_{version}_-bin.tar.gz.
+Now you have a project that you can build with Maven. The next step is to install Maven.
 
-Once you have downloaded the zip file, unzip it to your computer. Then add the _bin_ folder to your path.
+Maven is downloadable as a zip file at http://maven.apache.org/download.cgi. Only the binaries are required, so look for the link to apache-maven-{version}-bin.zip or apache-maven-{version}-bin.tar.gz.
 
-To test the Maven installation, run `mvn` from the command-line like this:
+Download and unzip the file, then add the _bin_ folder to your path.
+
+To test the Maven installation, run `mvn` from the command-line:
 
 ```sh
 $ mvn -v
 ```
 
-If all goes well, you should be presented with some information about the Maven installation. It will look similar to the following:
+If all goes well, you should see installation information like this:
 
 ```sh
 Apache Maven 3.0.5 (r01de14724cdef164cd33c7c8c2fe155faf9602da; 2013-02-19 08:51:28-0500)
@@ -165,16 +171,18 @@ Default locale: en_US, platform encoding: UTF-8
 OS name: "mac os x", version: "10.8.3", arch: "x86_64", family: "mac"
 ```
 
-Congratulations! You now have Maven installed.
+You now have Maven installed.
 
 
 Define a simple Maven build
------------------------------
-Now that Maven is installed, you need to create a Maven project definition. Maven projects are defined with an XML file named _pom.xml_. Among other things, this file gives the project's name, version, and dependencies that it has on external libraries.
+---------------------------
 
-Create a file named _pom.xml_ at the root of the project and give it the following contents:
+Now that Maven is installed, you need to create a Maven project definition. You define Maven projects with an XML file named _pom.xml_. Among other things, this file gives the project's name, version, and dependencies that it has on external libraries.
 
-```XML
+Create a file named pom.xml at the root of the project and give it the following contents:
+
+`pom.xml`
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
@@ -194,12 +202,11 @@ Create a file named _pom.xml_ at the root of the project and give it the followi
     </dependencies>
 
     <build>
-        <finalName>gs-maven-android</finalName>
         <plugins>
             <plugin>
                 <groupId>com.jayway.maven.plugins.android.generation2</groupId>
                 <artifactId>android-maven-plugin</artifactId>
-                <version>3.5.3</version>
+                <version>3.6.0</version>
                 <configuration>
                     <sdk>
                         <platform>17</platform>
@@ -223,65 +230,68 @@ Create a file named _pom.xml_ at the root of the project and give it the followi
 </project>
 ```
 
-You will note that the `<packaging>` element specifies an *apk*. This is the simplest possible *pom.xml* file necessary to build an Android project. It includes the following details of the project configuration:
+The `<packaging>` element specifies an *apk*. This is the simplest possible *pom.xml* file necessary to build an Android project. It includes the following details of the project configuration:
 
-* `<modelVersion>` - The POM model version (always 4.0.0).
-* `<groupId>` - The group or organization that the project belongs to. Often expressed as an inverted domain name.
-* `<artifactId>` - The name to be given to the project's library artifact (e.g., the name of its APK file).
-* `<version>` - The version of the project that is being built.
-* `<packaging>` - How the project should be packaged, in this case as an Android APK.
+* `<modelVersion>`. POM model version (always 4.0.0).
+* `<groupId>`. Group or organization that the project belongs to. Often expressed as an inverted domain name.
+* `<artifactId>`. Name to be given to the project's library artifact (for example, the name of its APK file).
+* `<version>`. Version of the project that is being built.
+* `<packaging>`. How the project should be packaged, in this case as an Android APK.
 
-The `<dependencies>` section declares a list of dependencies for our project. Specifically, it declares a single dependency for the Android library. Within the `<dependency>` element, the dependency coordinates are defined by three subelements:
+The `<dependencies>` section declares a list of dependencies for the project. Specifically, it declares a single dependency for the Android library. Within the `<dependency>` element, the dependency coordinates are defined by three subelements:
 
-* `<groupId>` - The group or organization that the dependency belongs to.
-* `<artifactId>` - The library that is required.
-* `<version>` - The specific version of the library that is required.
+* `<groupId>`. Group or organization that the dependency belongs to.
+* `<artifactId>`. Library that is required.
+* `<version>`. Specific version of the library that is required.
+* `<scope>`. Scoped as `compile` dependencies by default. That is, all dependencies should be available at compile-time.
 
-By default, all dependencies are scoped as `compile` dependencies. That is, they should be available at compile-time. In this case, you may note that we have specified a `<scope>` element with a value of `provided`. Dependencies of this type are required for compiling the project code, but will be provided at runtime by a container running the code. For example, the Android API's will always be available when running an Android application.
+In this case, the `<scope>` element has a value of `provided`. Dependencies of this type are required for compiling the project code, but will be provided at runtime by a container running the code. For example, the Android APIs are always available when an Android application is running.
 
-The `<build>` section declares additional configuration for building an application. Within the build section is a `<plugins>` section, which contains a list of plugins that add additional functionality to the build process. This is where we define the configuration for the [Android Maven Plugin]. As with dependencies, plugins also have `<groupId>`, `<artifactId>`, and `<version>` elements, and they behave as previously described. We also have the following new elements in our plugin declaration:
+The `<build>` section declares additional configuration for building an application. Within the build section is a `<plugins>` section, which contains a list of plugins that add additional functionality to the build process. This is where you define the configuration for the [Android Maven Plugin]. As with dependencies, plugins also have `<groupId>`, `<artifactId>`, and `<version>` elements, and they behave as previously described. The plugin declaration also has these elements:
 
-* `<configuration>` - The plugin specific configuration. Here we specify which Android Platform SDK to use in the build.
-* `<extensions>` - The combination of specifying a value of `true` and `apk` for `<packaging>` directs the [Android Maven Plugin] to become involved in the build process
-
-
-At this point we have a minimal, yet capable Maven project defined.
+* `<configuration>`. Plugin-specific configuration. Here you specify which Android Platform SDK to use in the build.
+* `<extensions>`. Combination of specifying a value of `true` and `apk` for `<packaging>` directs the [Android Maven Plugin] to become involved in the build process.
 
 
-## Build Android code
+At this point you have defined a minimal yet capable Maven project.
+
+
+Build Android code
+------------------
 
 Maven is now ready to build the project. You can execute several build lifecycle goals with Maven now, including goals to compile the project's code, create a library package (such as a JAR file), and install the library in the local Maven dependency repository.
 
-To try out the build, issue the following at the command line:
+Try out the build:
 
 ```sh
 $ mvn compile
 ```
 
-This will run Maven, telling it to execute the _compile_ goal. When it's finished, you should find the compiled _.class_ files in the _target/classes_ directory.
+This command runs Maven, telling it to execute the _compile_ goal. When it's finished, you should find the compiled _.class_ files in the _target/classes_ directory.
 
-Since it's unlikely that you'll want to distribute or work with _.class_ files directly, you'll probably want to run the _package_ goal instead:
+Because it's unlikely that you'll want to distribute or work with .class files directly, you'll probably want to run the _package_ goal instead:
 
 ```sh
 $ mvn package
 ```
 
-The *package* goal will compile your Java code, run any tests, and finish by packaging the code up in a JAR file within the *target* directory. The name of the JAR file will be based on the project's `<artifactId>` and `<version>`. For example, given the minimal *pom.xml* file from before, the JAR file will be named *gs-maven-android-0.1.0.jar*.
+The package goal compiles your Java code, runs any tests, and packages the code in a JAR file within the *target* directory. The name of the JAR file is based on the project's `<artifactId>` and `<version>`. For example, given the minimal pom.xml file shown earlier, the JAR file will be named gs-maven-android-0.1.0.jar.
 
-Because we changed the value of `<packaging>` from "jar" to "apk", the result will be an APK file within the *target* directory in addition to the JAR file. This APK file is now a packaged Android application ready to be deployed to a device or emulator.
+Because you set the value of `<packaging>` to "apk", the result will be an APK file within the *target* directory in addition to the JAR file. This APK file is now a packaged Android application ready to be deployed to a device or emulator.
 
-The Android Maven Plugin provides several more Maven goals that can be used to initiate the various phases of the build process, or interact with the device and emulator. You can see a list of all the available goals by running the following command:
+The Android Maven plugin provides several more Maven goals that you can use to initiate the various phases of the build process, or interact with the device and emulator. You can see a list of all the available goals by running the following command:
 
 ```sh
 $ mvn android:help
 ```
 
 
-## Declaring Dependencies
+Declare dependencies
+--------------------
 
-Our simple Hello World sample is completely self-contained and does not depend on any additional libraries. Most application, however, depend on external libraries to handle common and/or complex functionality.
+The simple Hello World sample is completely self-contained and does not depend on any additional libraries. Most applications, however, depend on external libraries to handle common and/or complex functionality.
 
-For example, suppose we want our application to print the current date and time. While we could use the date and time facilities in the native Java libraries, we can make things more interesting by using the Joda Time libraries.
+For example, suppose you want your application to print the current date and time. Although you could use the date and time facilities in the native Java libraries, you can make things more interesting by using the Joda Time libraries.
 
 To do this, modify HelloActivity.java to look like this:
 
@@ -314,9 +324,9 @@ public class HelloActivity extends Activity {
 }
 ```
 
-In this example, we are using Joda Time's `LocalTime` class to retrieve and display the current time. 
+In this example, you use Joda Time's `LocalTime` class to retrieve and display the current time. 
 
-If we were to run `mvn package` to build our project now, the build would fail because we have not declared Joda Time as a compile dependency in our build. We can fix that by adding the following lines to `<dependencies>` section of the *pom.xml*:
+If you were to run `mvn package` to build the project now, the build would fail because you have not declared Joda Time as a compile dependency in the build. You can fix that by adding the following lines to `<dependencies>` section of the *pom.xml*:
 
 ```xml
 <dependency>
@@ -326,7 +336,7 @@ If we were to run `mvn package` to build our project now, the build would fail b
 </dependency>
 ```
 
-Similar to the Android dependency we discussed earlier, this block of XML declares a new dependency for our project, specifically the Joda Time library.
+Similar to the Android dependency discussed earlier, this block of XML declares a new dependency for the project, specifically the Joda Time library.
 
 Now if you run `mvn compile` or `mvn package`, Maven should resolve the Joda Time dependency from the Maven Central repository and the build will be successful.
 
@@ -387,9 +397,10 @@ Here's the completed pom.xml file:
 ```
 
 
-## Next Steps
+Summary
+-------
 
-Congratulations! You have now created a very simple, yet effective Maven project definition for building Java projects.
+Congratulations! You have created a simple yet effective Maven project definition for building Java projects.
 
 
 [Android Maven Plugin]:https://code.google.com/p/maven-android-plugin

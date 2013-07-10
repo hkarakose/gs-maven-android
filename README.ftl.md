@@ -7,6 +7,7 @@ What you'll build
 
 This guide walks you through using Maven to build a simple Android project.
 
+
 What you'll need
 ----------------
 
@@ -17,7 +18,8 @@ What you'll need
 
 [sdk]: http://developer.android.com/sdk/index.html
 
-## <@how_to_complete_this_guide jump_ahead='Create Java classes'/>
+## <@how_to_complete_this_guide jump_ahead='Install Maven'/>
+
 
 <a name="scratch"></a>
 Set up the project
@@ -29,50 +31,28 @@ First, you set up an Android project for Maven to build.  To keep the focus on M
 
 <@create_android_manifest/>
 
-    <@snippet path="AndroidManifest.xml" prefix="complete"/>
+    <@snippet path="AndroidManifest.xml" prefix="initial"/>
 
 ### Create a string resource
 Add a text string. Text strings can be referenced from the application or from other resource files.
 
-    <@snippet path="res/values/strings.xml" prefix="complete"/>
+    <@snippet path="res/values/strings.xml" prefix="initial"/>
 
 ### Create a layout
 Here you define the visual structure for the user interface of your application.
 
-    <@snippet path="res/layout/hello_layout.xml" prefix="complete"/>
+    <@snippet path="res/layout/hello_layout.xml" prefix="initial"/>
 
-<a name="initial"></a>
 ### Create Java classes
 
 Within the `src/main/java/org/hello` directory, you can create any Java classes you want. To maintain consistency with the rest of this guide, create the following class:
 
-```java
-package org.hello;
+    <@snippet path="src/main/java/org/hello/HelloActivity.java" prefix="initial"/>
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.widget.TextView;
 
-public class HelloActivity extends Activity {
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.hello_layout);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        TextView textView = (TextView) findViewById(R.id.text_view);
-        textView.setText("Hello world!");
-    }
-
-}
-
-```
-
-### Install Maven
+<a name="initial"></a>
+Install Maven
+-------------
 
 Now you have a project that you can build with Maven. The next step is to install Maven.
 
@@ -101,59 +81,13 @@ You now have Maven installed.
 
 
 Define a simple Maven build
------------------------------
+---------------------------
+
 Now that Maven is installed, you need to create a Maven project definition. You define Maven projects with an XML file named _pom.xml_. Among other things, this file gives the project's name, version, and dependencies that it has on external libraries.
 
 Create a file named pom.xml at the root of the project and give it the following contents:
 
-```XML
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>org.hello</groupId>
-    <artifactId>gs-maven-android</artifactId>
-    <version>0.1.0</version>
-    <packaging>apk</packaging>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.google.android</groupId>
-            <artifactId>android</artifactId>
-            <version>4.1.1.4</version>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
-
-    <build>
-        <finalName>${project_id}</finalName>
-        <plugins>
-            <plugin>
-                <groupId>com.jayway.maven.plugins.android.generation2</groupId>
-                <artifactId>android-maven-plugin</artifactId>
-                <version>3.5.3</version>
-                <configuration>
-                    <sdk>
-                        <platform>17</platform>
-                    </sdk>
-                    <deleteConflictingFiles>true</deleteConflictingFiles>
-                    <undeployBeforeDeploy>true</undeployBeforeDeploy>
-                </configuration>
-                <extensions>true</extensions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
-                <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
-</project>
-```
+    <@snippet path="pom.xml" prefix="initial"/>
 
 The `<packaging>` element specifies an *apk*. This is the simplest possible *pom.xml* file necessary to build an Android project. It includes the following details of the project configuration:
 
@@ -181,7 +115,8 @@ The `<build>` section declares additional configuration for building an applicat
 At this point you have defined a minimal yet capable Maven project.
 
 
-## Build Android code
+Build Android code
+------------------
 
 Maven is now ready to build the project. You can execute several build lifecycle goals with Maven now, including goals to compile the project's code, create a library package (such as a JAR file), and install the library in the local Maven dependency repository.
 
@@ -201,7 +136,7 @@ $ mvn package
 
 The package goal compiles your Java code, runs any tests, and packages the code in a JAR file within the *target* directory. The name of the JAR file is based on the project's `<artifactId>` and `<version>`. For example, given the minimal pom.xml file shown earlier, the JAR file will be named gs-maven-android-0.1.0.jar.
 
-Because you changed the value of `<packaging>` from "jar" to "apk", the result will be an APK file within the *target* directory in addition to the JAR file. This APK file is now a packaged Android application ready to be deployed to a device or emulator.
+Because you set the value of `<packaging>` to "apk", the result will be an APK file within the *target* directory in addition to the JAR file. This APK file is now a packaged Android application ready to be deployed to a device or emulator.
 
 The Android Maven plugin provides several more Maven goals that you can use to initiate the various phases of the build process, or interact with the device and emulator. You can see a list of all the available goals by running the following command:
 
@@ -210,7 +145,8 @@ $ mvn android:help
 ```
 
 
-## Declare dependencies
+Declare dependencies
+--------------------
 
 The simple Hello World sample is completely self-contained and does not depend on any additional libraries. Most applications, however, depend on external libraries to handle common and/or complex functionality.
 
@@ -241,7 +177,8 @@ Here's the completed pom.xml file:
     <@snippet path="pom.xml" prefix="complete"/>
 
 
-## Summary
+Summary
+-------
 
 Congratulations! You have created a simple yet effective Maven project definition for building Java projects.
 
