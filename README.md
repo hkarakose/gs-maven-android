@@ -360,11 +360,6 @@ Here's the completed pom.xml file:
             <version>4.1.1.4</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
-            <version>2.2</version>
-        </dependency>
     </dependencies>
 
     <build>
