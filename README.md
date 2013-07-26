@@ -1,6 +1,4 @@
 
-# Getting Started: Building Android Projects with Maven
-
 What you'll build
 -----------------
 

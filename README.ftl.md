@@ -1,7 +1,5 @@
 <#assign project_id="gs-maven-android">
 
-# Getting Started: Building Android Projects with Maven
-
 What you'll build
 -----------------
 
