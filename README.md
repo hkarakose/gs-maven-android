@@ -1,9 +1,9 @@
+This guide walks you through using Maven to build a simple Android project.
 
 What you'll build
 -----------------
 
-This guide walks you through using Maven to build a simple Android project.
-
+You'll create a simple Android application that gives you the time of day, and then build it with Maven.
 
 What you'll need
 ----------------
