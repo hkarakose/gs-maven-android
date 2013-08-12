@@ -1,10 +1,10 @@
 <#assign project_id="gs-maven-android">
-This guide walks you through using Maven to build a simple Android project.
+This guide walks you through the process of building a simple Android project with Maven.
 
 What you'll build
 -----------------
 
-You'll create a simple Android application that gives you the time of day, and then build it with Maven.
+You'll create an Android application that gives you the time of day, and then build it with Maven.
 
 What you'll need
 ----------------
@@ -167,6 +167,9 @@ If you were to run `mvn package` to build the project now, the build would fail 
 ```
 
 Similar to the Android dependency discussed earlier, this block of XML declares a new dependency for the project, specifically the Joda Time library.
+
+Rebuild Android code with dependencies
+--------------------------------------
 
 Now if you run `mvn compile` or `mvn package`, Maven should resolve the Joda Time dependency from the Maven Central repository and the build will be successful.
 
