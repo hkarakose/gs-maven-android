@@ -37,7 +37,7 @@ To **skip the basics**, do the following:
 Set up the project
 ------------------
 
-First, you set up an Android project for Maven to build.  To keep the focus on Maven, make the project as simple as possible for now. If this is your first time working with Android projects, refer to [Installing the Android Development Environment](../gs-android/README.md) to help configure your development environment.
+First, you set up an Android project for Maven to build.  To keep the focus on Maven, make the project as simple as possible for now. If this is your first time working with Android projects, refer to [Installing the Android Development Environment][gs-android] to help configure your development environment.
 
 ### Create the directory structure
 
@@ -398,3 +398,4 @@ Congratulations! You have created a simple yet effective Maven project definitio
 
 [Android Maven Plugin]:https://code.google.com/p/maven-android-plugin
 [Android Manifest]:http://developer.android.com/guide/topics/manifest/manifest-intro.html
+[gs-android]: /guides/gs/android
