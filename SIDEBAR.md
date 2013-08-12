@@ -20,9 +20,9 @@ Building Android applications with Maven is just one facet of the Android develo
 
 ### Tutorials
 
-* [Tutorial TBD][tut-tbd]
+* [Designing and Implementing RESTful Web Services with Spring][tut-rest]
 
-[tut-tbd]: /guides/tutorials/tbd
+[tut-rest]: /guides/tutorials/rest
 
 ### Understanding Concepts and Technologies
 
