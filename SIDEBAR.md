@@ -29,5 +29,5 @@ Building Android applications with Maven is just one facet of the Android develo
 * [REST][u-rest]
 * [JSON][u-json]
 
-<@u_rest/>
-<@u_json/>
+[u-rest]: /understanding/REST
+[u-json]: /understanding/JSON
