@@ -2,7 +2,7 @@
 
 Building Android applications with Maven is just one facet of the Android development story. You may want to continue your exploration of Android and mobile application development with the following resources.
 
-### Getting Started Guides
+### Getting Started guides
 
 * [Building Android Applications with Gradle][gs-gradle-android]
 * [Consuming RESTful Web Services on Android][gs-consuming-rest-android]
@@ -24,7 +24,7 @@ Building Android applications with Maven is just one facet of the Android develo
 
 [tut-rest]: /guides/tutorials/rest
 
-### Understanding Concepts and Technologies
+### Concepts and technologies Concepts and Technologies
 
 * [REST][u-rest]
 * [JSON][u-json]
